@@ -4,7 +4,6 @@ import Header from './component/Header';
 import Hero from './pages/Hero';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import "bootswatch/dist/materia/bootstrap.min.css";
 
 function App() {
   return (

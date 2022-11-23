@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import "bootswatch/dist/materia/bootstrap.min.css";
 import ShowAlert from '../component/ShowAlert';
 
@@ -7,13 +8,11 @@ function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [acceptTerms, setAcceptTerms] = useState('');
 
   const [inputname, setInputName] = useState(name);
   const [inputemail, setInputEmail] = useState(email);
   const [inputpassword, setInputPassword] = useState(password);
   const [inputconfirmPassword, setInputConfirmPassword] = useState(confirmPassword);
-  const [inputacceptTerms, setInputAcceptTerms] = useState(acceptTerms);
 
   const handleChangeName = (event) => {
     setName(event.target.value);
@@ -31,25 +30,21 @@ function Register() {
     setConfirmPassword(event.target.value);
   };
 
-  const handleChangeAcceptTerms = (event) => {
-    setAcceptTerms(event.target.value);
-  };
-
   const handleClick = () => {
-    if (name !== "" && email !== "" && password !== "" && confirmPassword !== "" && password !== confirmPassword ) {
+    if (name !== "" && email !== "" && password !== "" && confirmPassword !== "" && (password === confirmPassword)) {
       setInputName(name)
       setInputEmail(email);
       setInputPassword(password);
       setInputConfirmPassword(confirmPassword);
-      setInputAcceptTerms(acceptTerms);
       ShowAlert("Registered Successfully", "alert-success");
     } else {
-      ShowAlert("Please Fill all Field", "alert-warning")
+      ShowAlert("Please Fill in correct credentials", "alert-warning")
     }
   };
   
 
   const handleSubmit = (e) => e.preventDefault();
+  
   return (
     <section className='container my-5 wrapper'>
       <div className="card mx-auto" style={{maxWidth: '30rem'}}>
@@ -70,15 +65,20 @@ function Register() {
               <input type="password" className="form-control" id="InputPassword2" placeholder="Confirm Password" value={confirmPassword} onChange={handleChangeConfirmPassword} />
             </div>
             <div className="form-check  mt-4">
-              <input className="form-check-input" type="checkbox" value={acceptTerms} id="flexCheckDefault" onChange={handleChangeAcceptTerms} />
+              <input className="form-check-input" type="checkbox" value='' />
               <label className="form-check-label" htmlFor="flexCheckDefault">
-                I accept the <span className="text-primary">Terms & Conditions</span>
+                I accept the <Link className="card-link">Terms & Conditions</Link>
               </label>
             </div>
             <div className="d-grid gap-2">
               <button type="submit" className="btn btn-md btn-primary mt-5" onClick={handleClick}>Sign Up</button>
             </div>
-            <p className="text-muted text-center mt-5">Already have an account? <button type="button" className="btn btn-link">Sign in</button></p>
+            <p className="text-muted text-center mt-5">
+              Already have an account? 
+              <Link to='/login'>
+                <button type="button" className="btn btn-link">Sign in</button>
+              </Link>
+            </p>
           </fieldset>
         </form>
       </div>
@@ -96,9 +96,6 @@ function Register() {
             </p>
             <p className="card-text">
               Confirm Password: {inputconfirmPassword}
-            </p>
-            <p className="card-text">
-              Accept Terms & Conditions: {inputacceptTerms}
             </p>
           </div>
         </div>

@@ -1,46 +1,32 @@
-import { Outlet, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
 
 function Header() {
   return (
-    <header>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <div className="container">
-          <Link className="navbar-brand" to="#">MoniVest</Link>
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarColor03">
-            <ul className="navbar-nav me-auto">
-              <li className="nav-item">
-                <Link className="nav-link active" to="/">Home
-                  <span className="visually-hidden">(current)</span>
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="#">Packages</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="#">Pricing</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="#">About</Link>
-              </li>
-            </ul>
-            <div className="d-flex gap-4">
-              <Link to='/login'>
-                <button className="btn btn-link">Sign IN</button>
-              </Link>
-              <Link to='/register'>
-                <button className="btn btn-md btn-primary">Sign UP</button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
-
-      <Outlet />
-    </header>
+    <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
+      <Container>
+        <Navbar.Brand>React-Bootstrap</Navbar.Brand>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="me-auto">
+            <Link className="nav-link active" to="/">Home
+              <span className="visually-hidden">(current)</span>
+            </Link>
+            <Nav.Link href="#pricing">Packages</Nav.Link>
+            <Nav.Link href="#pricing">Pricing</Nav.Link>
+            <Nav.Link href="#pricing">About</Nav.Link>
+          </Nav>
+          <Nav className="gap-2">
+            <Link to='/login' className="btn btn-link">Sign In</Link>
+            <Link to='/register' className="btn btn-slg btn-primary text-white">Sign Up</Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 }
+
 
 export default Header;
