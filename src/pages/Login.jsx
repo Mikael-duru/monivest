@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import ShowAlert from '../component/ShowAlert';
+import Quotes from '../component/Quotes'
 
 function Register() {
   const [email, setEmail] = useState('');
@@ -37,9 +38,10 @@ function Register() {
   return (
     <section className='container my-5'>
       <div className="card mx-auto" style={{maxWidth: '30rem'}}>
+        <Quotes />
         <form action="" className='p-4' onSubmit={handleSubmit}>
           <fieldset>
-            <legend className='fs-1 lead text-center fw-bold mb-5 mt-5'>WELCOME BACK</legend>
+            <legend className='fs-1 lead text-center fw-bold mb-5 mt-4'>WELCOME BACK</legend>
             <div className="form-group  mt-4">
               <input type="email" className="form-control" id="LoginInputEmail" aria-describedby="emailHelp" placeholder="Enter Email" value={email} onChange={handleChangeEmail} />
             </div>
