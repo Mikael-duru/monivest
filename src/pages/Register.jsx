@@ -42,6 +42,7 @@ function Register() {
       setInputPassword(password);
       setInputConfirmPassword(confirmPassword);
       setInputAcceptTerms(acceptTerms);
+      ShowAlert("Registered Successfully", "alert-success");
     } else {
       ShowAlert("Please Fill all Field", "alert-warning")
     }
@@ -50,7 +51,7 @@ function Register() {
 
   const handleSubmit = (e) => e.preventDefault();
   return (
-    <section className='container my-5'>
+    <section className='container my-5 wrapper'>
       <div className="card mx-auto" style={{maxWidth: '30rem'}}>
         <form action="" className='p-4' onSubmit={handleSubmit}>
           <fieldset>

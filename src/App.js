@@ -1,25 +1,20 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './component/Header';
-// import Hero from './pages/Hero';
+import Hero from './pages/Hero';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import "bootswatch/dist/materia/bootstrap.min.css";
 
 function App() {
   return (
     <Router>
       <Header />
-      <Switch>
-        {/* <Route path='/' exact>
-          <Hero />
-        </Route> */}
-        <Route path='./Login'>
-          <Login />
-        </Route>
-        <Route path='./Register'>
-          <Register />
-        </Route>
-      </Switch>
+      <Routes>
+        <Route path='/' element={<Hero />} exact />
+        <Route path='/register' element={<Register />} />
+        <Route path='/login' element={<Login />} />
+      </Routes>
     </Router>
   );
 }

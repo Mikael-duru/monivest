@@ -23,19 +23,40 @@ function Register() {
     if (email !== "" && password !== "") {
       setUpdatedEmail(email);
       setUpdatedPassword(password);
-      ShowAlert("Login Successfully", "alert-success")
+      displayLoginDetails();
+      ShowAlert("Login Successfully", "alert-success");
     } else {
-      ShowAlert("Please Fill all Field", "alert-warning")
+      ShowAlert("Please Fill all Field", "alert-warning");
     }
 
   };
+
+  const displayLoginDetails = () => {
+    const display = document.querySelector('#display')
+
+    const updateCard = document.createElement("div");
+    updateCard.style.maxWidth = '30rem';
+    updateCard.classList.add('card', 'mx-auto', 'mt-5');
+    const cardBody = document.createElement('div');
+    cardBody.classList.add('card-body');
+    cardBody.innerHTML = `
+      <p className="card-text">
+        Email: ${updatedemail}
+      </p>
+      <p className="card-text">
+        Password: ${updatedpassword}
+      </p>
+    `
+    updateCard.appendChild(cardBody);
+    display.appendChild(updateCard)
+  }
 
   const handleSubmit = (e) => e.preventDefault();
 
 
 
   return (
-    <section className='container my-5'>
+    <section className='container my-5 wrapper'>
       <div className="card mx-auto" style={{maxWidth: '30rem'}}>
         <form action="" className='p-4' onSubmit={handleSubmit}>
           <fieldset>
@@ -60,6 +81,9 @@ function Register() {
         </form>
       </div>
 
+      <div id="display"></div>
+
+      {/* (email !== "" && password !== "" &&
       <div className="card mx-auto mt-5" style={{maxWidth: '30rem'}}>
         <div className="card-body">
           <p className="card-text">
@@ -70,6 +94,7 @@ function Register() {
           </p>
         </div>
       </div>
+      ) */}
     </section>
   );
 }
