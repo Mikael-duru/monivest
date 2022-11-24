@@ -7,7 +7,9 @@ function Header() {
   return (
     <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
       <Container>
-        <Navbar.Brand>MoniVest</Navbar.Brand>
+        <Link className='nav-link' to="/">
+          <Navbar.Brand>MoniVest</Navbar.Brand>
+        </Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
