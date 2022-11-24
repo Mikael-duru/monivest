@@ -47,7 +47,7 @@ function Register() {
   return (
     <section className='container my-5 wrapper'>
       <div className="card mx-auto" style={{maxWidth: '30rem'}}>
-        <form action="" className='p-4' onSubmit={handleSubmit}>
+        <form action="" className='px-4 py-2' onSubmit={handleSubmit}>
           <fieldset>
             <legend className='fs-1 lead text-center fw-bold my-5'>CREATE ACCOUNT</legend>
             <div className="form-group">
