@@ -26,7 +26,7 @@ class RandomQuotes extends Component{
     const { quote, author } = this.state
     return(
       <div className="mx-auto text-center mt-5 px-4">
-        <sup><i class="fa fa-quote-left" /></sup> {quote} <sup><i class="fa fa-quote-right" /></sup><br />
+        <sup><i className="fa fa-quote-left" /></sup> {quote} <sup><i className="fa fa-quote-right" /></sup><br />
         <em>- {author}</em>
       </div>
     ) 
