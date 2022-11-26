@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import "bootswatch/dist/materia/bootstrap.min.css";
-import ShowAlert from '../component/ShowAlert';
+import { Alert } from "react-bootstrap";
 
 function Register() {
   const [name, setName] = useState('');
@@ -9,7 +8,9 @@ function Register() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [acceptTerms, setAcceptTerms] = useState('');
-  const [showInput, setShowInput] = useState(false)
+  const [showInput, setShowInput] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleChange = (e) => {
     const {id, value } = e.target;
@@ -35,10 +36,10 @@ function Register() {
   const handleClick = () => {
     if (name !== "" && email !== "" && password !== "" && confirmPassword !== "" && (password === confirmPassword) && acceptTerms !== "") {
       setShowInput(true);
-      ShowAlert("Registered Successfully", "alert-success");
+      setSuccess(true);
     }
       else {
-    ShowAlert("Please Fill in complete and correct credentials", "alert-warning")
+      setError(true)
     }
   }
 
@@ -46,6 +47,19 @@ function Register() {
 
   return (
     <section className='container my-5 wrapper'>
+
+      {(success) && 
+        <div className="mx-auto mb-5" style={{maxWidth: '40rem'}}>
+          <Alert variant="success" onClose={() => setSuccess(false)} dismissible><strong className='fs-5'><i className="fas fa-user-check text-white fs-4" />&nbsp; Registered Successfully</strong></Alert>
+        </div> 
+      }
+
+      {(error) &&
+        <div className="mx-auto mb-5" style={{maxWidth: '40rem'}}>
+          <Alert variant="warning" className='fade show'  onClose={() => setError(false)} dismissible><strong className='fs-5'><i className="fa fa-exclamation-triangle text-white fs-4" />&nbsp; Please fill in correct details!</strong></Alert>
+        </div>
+      }
+
       <div className="card mx-auto" style={{maxWidth: '30rem'}}>
         <form action="" className='px-4 py-2' onSubmit={handleSubmit}>
           <fieldset>

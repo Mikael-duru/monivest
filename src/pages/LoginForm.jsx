@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import ShowAlert from '../component/ShowAlert';
-import Quotes from '../component/Quotes'
+import { Alert } from "react-bootstrap";
+import Quotes from '../component/Quotes';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState('');
+  const [showInput, setShowInput] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleChange = (e) => {
     const {id, value } = e.target;
@@ -23,37 +26,13 @@ function Login() {
     }
   }
 
-  const display = () => {
-    const display = document.querySelector('#display');
-    const card = document.createElement('div');
-    card.className = `card mx-auto mt-5`;
-    card.style.maxWidth = '30rem';
-    const cardBody = document.createElement('div');
-    cardBody.className = `card-body`;
-
-
-    cardBody.innerHTML = `
-      <p className="card-text">
-        Email: ${email}
-      </p>
-      <p className="card-text">
-        Password: ${password}
-      </p>
-      <p className="card-text">
-        ${rememberMe}
-      </p>
-    `
-
-    card.appendChild(cardBody);
-    display.appendChild(card);
-  }
-
   const handleClick = () => {
     if (email !== "" && password !== "") {
-      display()
+      setShowInput(true);
+      setSuccess(true);
     }
       else {
-    ShowAlert("Incorrect Email or Password", "alert-warning")
+      setError(true)
     }
   }
 
@@ -61,6 +40,19 @@ function Login() {
 
   return (
     <section className='container my-5 wrapper'>
+
+      {(success) && 
+        <div className="mx-auto mb-5" style={{maxWidth: '40rem'}}>
+          <Alert variant="success" onClose={() => setSuccess(false)} dismissible><strong className='fs-5'><i className="fas fa-user-check text-white fs-4" />&nbsp; Registered Successfully</strong></Alert>
+        </div> 
+      }
+
+      {(error) &&
+        <div className="mx-auto mb-5" style={{maxWidth: '40rem'}}>
+          <Alert variant="warning" className='fade show'  onClose={() => setError(false)} dismissible><strong className='fs-5'><i className="fa fa-exclamation-triangle text-white fs-4" />&nbsp; Please fill in correct details!</strong></Alert>
+        </div>
+      }
+
       <div className="card mx-auto" style={{maxWidth: '30rem'}}>
 
         <Quotes />
@@ -100,7 +92,21 @@ function Login() {
         </form>
       </div>
 
-      <div id="display"></div>
+      {(showInput) &&
+        <div className="card mx-auto mt-5" style={{maxWidth: '30rem'}}>
+          <div className="card-body">
+            <p className="card-text">
+              Email: {email}
+            </p>
+            <p className="card-text">
+              Password: {password}
+            </p>
+            <p className="card-text">
+              {rememberMe}
+            </p>
+          </div>
+        </div>
+      } 
     </section>
   )
 }
